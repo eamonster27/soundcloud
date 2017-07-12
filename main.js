@@ -3,7 +3,6 @@ document.querySelector('.search-form').addEventListener('submit', function(event
   search(document.querySelector('#query').value);
 });
 
-
 function search(query) {
   // Remove spaces for URL prep
   query = query.replace(/\s/g, '&')
@@ -40,7 +39,6 @@ function fetchData(type, query){
           user.id = json[t].id;
           user.permalink_url = json[t].permalink_url;
           user.username = json[t].username;
-          //console.log(user);
 
           const html = `
           <div class="user" id="${user.id}">
@@ -58,7 +56,6 @@ function fetchData(type, query){
           document.querySelector("#users").insertAdjacentHTML('afterbegin', html);
         }
       }
-
       else if(type === "tracks"){
         for(let t = 0; t < json.length - 1; ++t){
           var track = {};
@@ -68,7 +65,7 @@ function fetchData(type, query){
           track.title = json[t].title;
           track.username = json[t].user.username;
           track.user_url = json[t].user.permalink_url;
-          //console.log(track);
+
           if(!track.artwork_url){
             track.artwork_url = "default-track-art.png"
           }
@@ -87,10 +84,11 @@ function fetchData(type, query){
             </div>
           </div>
           `;
+
           document.querySelector('#tracks').insertAdjacentHTML('afterbegin', html);
 
           document.querySelector(`img[id="${track.id}"]`).addEventListener('click', function(event){
-
+            // Clear previous contents
             document.querySelector('.player').innerHTML = '';
 
             var trackID = event.target.id;
@@ -105,10 +103,8 @@ function fetchData(type, query){
 
             document.querySelector('.player').insertAdjacentHTML('afterbegin', playerHTML);
           });
-
         }
       }
-
       else if(type === "playlists"){
         for(let t = 0; t < json.length - 1; ++t){
           var playlist = {};
@@ -117,7 +113,6 @@ function fetchData(type, query){
           playlist.title = json[t].title;
           playlist.username = json[t].user.username;
           playlist.user_url = json[t].user.permalink_url;
-          //console.log(playlist);
 
           const html = `
           <div class="playlist" id="${playlist.id}">
@@ -131,10 +126,7 @@ function fetchData(type, query){
           `;
 
           document.querySelector("#playlists").insertAdjacentHTML('afterbegin', html);
-
         }
       }
-
-      //console.log("Data", json);
     });
 };
