@@ -94,10 +94,7 @@ img {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  width: 18%;
-  border-style: solid;
-  border-width: thin;
-  border-color: #ecf0f1;
+  width: 40%;
   margin: 5px;
 }
 
@@ -119,8 +116,8 @@ img {
   flex-flow: column nowrap;
   align-items: center;
   justify-content: space-around;
-  width: 18%;
-  margin: 5px;
+  width: 40%;
+  margin: 0px 5px 0px 5px;
 }
 
 .track-details {
@@ -144,7 +141,7 @@ img {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  width: 18%;
+  width: 40%;
   border-style: solid;
   border-width: thin;
   border-color: #ecf0f1;
@@ -155,4 +152,48 @@ img {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+}
+
+/* TABLET */
+@media screen and ( min-width: 480px ) and ( max-width: 899px ){
+  .user {
+    width: 30%;
+  }
+
+  .track {
+    width: 30%;
+  }
+
+  .playlist {
+    width: 30%;
+  }
+}
+
+/* DESKTOP */
+@media screen and ( min-width: 900px ) and ( max-width: 1099px ){
+  .user {
+    width: 23%;
+  }
+
+  .track {
+    width: 23%;
+  }
+
+  .playlist {
+    width: 23%;
+  }
+}
+/* DESKTOP WIDE */
+@media screen and ( min-width: 1100px ){
+  .user {
+    width: 18%;
+  }
+
+  .track {
+    width: 18%;
+  }
+
+  .playlist {
+    width: 18%;
+  }
 }

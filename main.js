@@ -97,7 +97,7 @@ function fetchData(type, query){
             var trackTitle = event.target.alt;
 
             const playerHTML = `
-              <audio class="music-player" controls="controls" src="https://api.soundcloud.com/tracks/${trackID}/stream?client_id=8538a1744a7fdaa59981232897501e04"></audio>
+              <audio class="music-player" controls="controls" autoplay src="https://api.soundcloud.com/tracks/${trackID}/stream?client_id=8538a1744a7fdaa59981232897501e04"></audio>
               <div class="now-playing">
                 <h6>Now Playing: ${trackTitle}</h6>
               </div>
@@ -122,9 +122,9 @@ function fetchData(type, query){
           const html = `
           <div class="playlist" id="${playlist.id}">
             <div class="playlist-details">
-              <a href="${playlist.permalink_url}"><h3>${playlist.title}</h3></a>
+              <a href="${playlist.permalink_url}"><h6>${playlist.title}</h6></a>
               <a href="${playlist.user_url}">
-                <h3>${playlist.username}</h3>
+                <h5>${playlist.username}</h5>
               </a>
             </div>
           </div>
