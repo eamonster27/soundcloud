@@ -1,22 +1,8 @@
-/*
-  Here is a guide for the steps you could take:
-*/
+document.querySelector('.search-form').addEventListener('submit', function(event) {
+  event.preventDefault();
+  search(document.querySelector('#query').value);
+});
 
-// 1. First select and store the elements you'll be working with
-
-
-// 2. Create your `onSubmit` event for getting the user's search term
-
-
-// 3. Create your `fetch` request that is called after a submission
-
-
-// 4. Create a way to append the fetch results to your page
-
-
-// 5. Create a way to listen for a click that will play the song in the audio play
-
-document.querySelector('input[name="search"]').addEventListener('click', search(document.querySelector('input[name="query"]').value));
 
 function search(query) {
   // Clear Old Results
@@ -36,7 +22,6 @@ function clearOldResults(type){
   while (oldData.firstChild) {
     oldData.removeChild(oldData.firstChild);
   };
-  oldData.innerHTML = "Gathering Results...";
 };
 
 function fetchData(type, query){
@@ -52,7 +37,7 @@ function fetchData(type, query){
           user.id = json[t].id;
           user.permalink_url = json[t].permalink_url;
           user.username = json[t].username;
-          console.log(user);
+          //console.log(user);
 
           const html = `
           <div class="user" id="${user.id}">
@@ -66,7 +51,8 @@ function fetchData(type, query){
               <a href="${user.permalink_url}">${user.username}</a>
             </div>
           </div>
-          `
+          `;
+          document.querySelector("#users").insertAdjacentHTML('afterbegin', html);
         }
       }
 
@@ -79,7 +65,7 @@ function fetchData(type, query){
           track.title = json[t].title;
           track.username = json[t].user.username;
           track.user_url = json[t].user.permalink_url;
-          console.log(track);
+          //console.log(track);
 
           const html = `
           <div class="track" id="${track.id}">
@@ -96,29 +82,23 @@ function fetchData(type, query){
               </a>
             </div>
           </div>
-          `
+          `;
+          document.querySelector("#tracks").insertAdjacentHTML('afterbegin', html);
         }
       }
 
       else if(type === "playlists"){
         for(let t = 0; t < json.length - 1; ++t){
           var playlist = {};
-          playlist.artwork_url = json[t].artwork_url;
           playlist.id = json[t].id;
           playlist.permalink_url = json[t].permalink_url;
           playlist.title = json[t].title;
           playlist.username = json[t].user.username;
           playlist.user_url = json[t].user.permalink_url;
-          console.log(playlist);
+          //console.log(playlist);
 
           const html = `
           <div class="playlist" id="${playlist.id}">
-            <div class="playlist-artwork">
-              <a href="${playlist.permalink_url}">
-                <img src="${playlist.artwork_url}" alt="${playlist.title}">
-              </a>
-            </div>
-
             <div class="playlist-details">
               <a href="${playlist.permalink_url}">${playlist.title}</a>
               <a href="${playlist.user_url}">
@@ -126,10 +106,13 @@ function fetchData(type, query){
               </a>
             </div>
           </div>
-          `
+          `;
+
+          document.querySelector("#playlists").insertAdjacentHTML('afterbegin', html);
+
         }
       }
 
-      console.log("Data", json);
+      //console.log("Data", json);
     });
 };

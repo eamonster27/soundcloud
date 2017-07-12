@@ -1,3 +1,57 @@
 body {
   background-color: #60d9f1;
 }
+
+.results{
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#users {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.user {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  width: 18%;
+  border-style: solid;
+  border-width: thin;
+  border-color: red;
+  margin: 5px;
+
+}
+
+#tracks {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.track {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  width: 18%;
+  border-style: solid;
+  border-width: thin;
+  border-color: blue;
+  margin: 5px;
+}
+
+#playlists {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.playlist {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  width: 18%;
+  border-style: solid;
+  border-width: thin;
+  border-color: green;
+  margin: 5px;
+}
