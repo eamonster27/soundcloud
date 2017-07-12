@@ -5,6 +5,9 @@ document.querySelector('.search-form').addEventListener('submit', function(event
 
 
 function search(query) {
+  // Remove spaces for URL prep
+  query = query.replace(/\s/g, '&')
+
   // Clear Old Results
   clearOldResults("users");
   clearOldResults("tracks");
@@ -66,24 +69,43 @@ function fetchData(type, query){
           track.username = json[t].user.username;
           track.user_url = json[t].user.permalink_url;
           //console.log(track);
+          if(!track.artwork_url){
+            track.artwork_url = "default-track-art.png"
+          }
 
           const html = `
-          <div class="track" id="${track.id}">
+          <div class="track">
             <div class="track-artwork">
-              <a href="${track.stream_url}">
-                <img src="${track.artwork_url}" alt="${track.title}">
-              </a>
+                <img src="${track.artwork_url}" alt="${track.title}" id="${track.id}">
+              <a class="track-name" href="${track.stream_url}"><h6>${track.title}</h6></a>
             </div>
 
             <div class="track-details">
-              <a href="${track.stream_url}">${track.title}</a>
               <a href="${track.user_url}">
-                <h3>${track.username}</h3>
+                <h5>${track.username}</h5>
               </a>
             </div>
           </div>
           `;
-          document.querySelector("#tracks").insertAdjacentHTML('afterbegin', html);
+          document.querySelector('#tracks').insertAdjacentHTML('afterbegin', html);
+
+          document.querySelector(`img[id="${track.id}"]`).addEventListener('click', function(event){
+
+            document.querySelector('.player').innerHTML = '';
+
+            var trackID = event.target.id;
+            var trackTitle = event.target.alt;
+
+            const playerHTML = `
+              <audio class="music-player" controls="controls" src="https://api.soundcloud.com/tracks/${trackID}/stream?client_id=8538a1744a7fdaa59981232897501e04"></audio>
+              <div class="now-playing">
+                <h6>Now Playing: ${trackTitle}</h6>
+              </div>
+            `;
+
+            document.querySelector('.player').insertAdjacentHTML('afterbegin', playerHTML);
+          });
+
         }
       }
 
@@ -100,7 +122,7 @@ function fetchData(type, query){
           const html = `
           <div class="playlist" id="${playlist.id}">
             <div class="playlist-details">
-              <a href="${playlist.permalink_url}">${playlist.title}</a>
+              <a href="${playlist.permalink_url}"><h3>${playlist.title}</h3></a>
               <a href="${playlist.user_url}">
                 <h3>${playlist.username}</h3>
               </a>
