@@ -4,21 +4,37 @@
   <title>SoundCloud Music Search</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <div class="container">
     <header>
       <h1>Really Awesome Music Site</h1>
     </header>
+
     <section class="player">
       <audio class="music-player" controls="controls" src=""></audio>
+      <div class="now-playing"></div>
     </section>
+
+    <hr>
+
     <section class="search">
-      <form class="search-form">
-        
+      <form class="search-form" action="index.html" method="post">
+        <input type="text" name="query" placeholder="Search">
+        <input type="submit" name="search" value="Search">
       </form>
+    </section><hr>
+
+    <section class="results">
+      <div id="users"></div><hr>
+
+      <div id="tracks"></div><hr>
+
+      <div id="playlists"></div>
     </section>
-    <section class="results"></section>
+
   </div>
+
   <script src="main.js"></script>
 </body>
 </html>
